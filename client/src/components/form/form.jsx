@@ -125,7 +125,7 @@ function Form() {
       </div>
     ))
   ) : (
-    <p>No se pudieron cargar los generos</p>
+    <p>Cargando</p>
   )}
 </div>
 

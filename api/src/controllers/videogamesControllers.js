@@ -35,7 +35,9 @@ const getAllVideogames = async () => {
       
       const allGames = infoCleaner(info)   
   
-      const videogamesDb = await Videogame.findAll();
+      const videogamesDb = await Videogame.findAll({
+        include: 'genres', 
+      });
   
       return [...videogamesDb, ...allGames.slice(0, 100)];
     
@@ -84,7 +86,9 @@ const getVideogameById = async(id,source) => {
         array.push(response)
         videogame = detailInfo(array);
     } else {
-       const objDb = await Videogame.findByPk(id);
+       const objDb = await Videogame.findByPk(id, {
+        include: 'genres', 
+      })
         if(objDb){
         const info = [objDb.toJSON()]
          videogame = info;

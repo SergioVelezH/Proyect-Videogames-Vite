@@ -5,6 +5,9 @@ export const GET_BY_NAME = "GET_BY_NAME";
 export const GET_VIDEOGAME_BY_ID = "GET_VIDEOGAME_BY_ID";
 export const CREATE_NEW_VIDEOGAME = "CREATE_NEW_VIDEOGAME";
 export const GET_ALL_GENRES = "GET_ALL_GENRES";
+export const FILTER_ORIGIN = "FILTER_ORIGIN";
+export const ORDER_ALFA = "ORDER_ALFA";
+export const ORDER_RATING = "ORDER_RATING";
 
 
 export function getAllVideogames(){
@@ -58,5 +61,27 @@ export function getAllGenres(){
         type:"GET_ALL_GENRES",
         payload:response.data
     })    
+    }
+};
+
+
+export function filterOrigin(option){
+    return{
+        type: FILTER_ORIGIN,
+        payload: option,
+    }
+};
+
+export function orderAlfa(order){
+    return{
+        type: ORDER_ALFA,
+        payload: order,
+    }
+};
+
+export function orderRating(order){
+    return{
+        type: ORDER_RATING,
+        payload: order,
     }
 };

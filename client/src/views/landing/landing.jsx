@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import './landing.css'
 
 
@@ -5,7 +6,12 @@ import './landing.css'
 function Landing() {
     return (
         <div>
-            <h1>ESTAS EN EL Landing</h1>
+            <div className="global">
+                <h1 className="text">🏁Welcome to Videogames Web Page!🏁</h1>
+                    <Link  to={"/home"}>
+                        <button className="boton">Click to home</button>
+                    </Link>
+            </div>
         </div>
     )
 }

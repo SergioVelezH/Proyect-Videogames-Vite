@@ -26,9 +26,9 @@ export function validar(input) {
         errors.released = "Debe ser completado con una fecha";
     }
 
-    if(!regRating.test(input.rating)){
-        errors.rating = "Debe ser un numero decimal"
-    }
+    // if(!regRating.test(input.rating)){
+    //     errors.rating = "Debe ser un numero decimal"
+    // }
 
     if(!regNombre.test(input.platforms)){
         errors.platforms = "No puede contener simbolos";

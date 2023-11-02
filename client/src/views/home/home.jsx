@@ -27,7 +27,7 @@ function Home() {
         dispatch(getAllVideogames())
       },[dispatch])
     
-    
+    console.log(allVideogames)
       return (
         !allVideogames.length ? (<div><h1>CARGANDO</h1></div>) : (
         <div className='home'>

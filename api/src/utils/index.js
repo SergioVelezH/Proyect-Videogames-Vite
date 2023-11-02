@@ -8,6 +8,7 @@ const infoCleaner = (arr) => {
             name:game.name,
             genres:game.genres.map((genre) => genre.name).join(),
             background_image: game.background_image,
+            rating:game.rating
         }
     })
 };
