@@ -28,4 +28,5 @@ useEffect(() => {
         </div>
     )
 }
+
 export default Detail;

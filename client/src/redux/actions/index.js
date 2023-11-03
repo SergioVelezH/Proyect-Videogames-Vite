@@ -8,27 +8,44 @@ export const GET_ALL_GENRES = "GET_ALL_GENRES";
 export const FILTER_ORIGIN = "FILTER_ORIGIN";
 export const ORDER_ALFA = "ORDER_ALFA";
 export const ORDER_RATING = "ORDER_RATING";
+export const FILTER_VIDEOGAME_GENRE = "FILTER_VIDEOGAME_GENRE";
 
 
 export function getAllVideogames(){
     return async function (dispatch){
-        const response = await axios("http://localhost:3001/videogames");
-    return dispatch({
-        type: "GET_ALL_VIDEOGAMES",
-        payload:response.data
-    })    
-    }
+        try {
+            const response = await axios("http://localhost:3001/videogames");
+            return dispatch({
+                type: "GET_ALL_VIDEOGAMES",
+                payload:response.data
+    });    
+    } catch (error) {
+        return dispatch({
+            type: "GET_ALL_VIDEOGAMES",
+            payload: error.message
+})
+}
+}
 };
 
-export function getByName(name){
-    return async function (dispatch){
-        const response = await axios(`http://localhost:3001/videogames?name=${name}`);
-    return dispatch({
-        type:"GET_BY_NAME",
-        payload:response.data
-    })    
-    }
-};
+export function getByName(name) {
+    return async function (dispatch) {
+      try {
+        const response = await axios.get(`http://localhost:3001/videogames?name=${name}`);
+        return dispatch({
+            type: "GET_BY_NAME",
+            payload: response.data,
+          });
+        
+      } catch (error) {
+        // Ocurrió un error en la solicitud
+        return dispatch({
+          type: "GET_BY_NAME",
+          payload: error.response.data.error,
+        });
+      }
+    };
+  }
 
 
 
@@ -68,6 +85,13 @@ export function getAllGenres(){
 export function filterOrigin(option){
     return{
         type: FILTER_ORIGIN,
+        payload: option,
+    }
+};
+
+export function filterVideogameGenre(option){
+    return{
+        type: FILTER_VIDEOGAME_GENRE,
         payload: option,
     }
 };

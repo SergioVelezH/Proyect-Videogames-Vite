@@ -10,12 +10,10 @@ const {
 
 
 const getAllVideogames = async () => {
-    // const response = (await axios.get(`https://api.rawg.io/api/games?key=${APY_KEY}`)).data
-    // const videoArr = response.results;
-    // const allVideogames = infoCleaner(videoArr);
-    // const videogamesDb = await Videogame.findAll();
-    // return [...videogamesDb,...allVideogames] ;
-    
+
+    try {
+      
+     
     const apiUrl = 'https://api.rawg.io/api/games';
     const numGamesToFetch = 100; 
     const numGamesPerRequest = 10;
@@ -40,6 +38,9 @@ const getAllVideogames = async () => {
       });
   
       return [...videogamesDb, ...allGames.slice(0, 100)];
+     } catch (error) {
+        throw Error ("Ups hubo un problema en el servidor")
+      }
     
   };
     

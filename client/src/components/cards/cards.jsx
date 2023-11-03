@@ -17,8 +17,8 @@ function Cards({allVideogames}) {
     
     return (
         <div className="card-container">
-            {videogamesList.slice((pagina - 1) * porPagina,(pagina - 1) * porPagina + porPagina)
-            .map((game) => (<Card game = {game}/>))}
+            {Array.isArray(videogamesList) ? videogamesList.slice((pagina - 1) * porPagina,(pagina - 1) * porPagina + porPagina)
+            .map((game) => (<Card game = {game}/>)) : videogamesList}
             <Paginacion pagina ={pagina} setPagina = {setPagina} maxPag = {maxPag} />
         </div>
     )

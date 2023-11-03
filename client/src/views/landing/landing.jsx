@@ -5,15 +5,19 @@ import './landing.css'
 
 function Landing() {
     return (
-        <div>
-            <div className="global">
-                <h1 className="text">🏁Welcome to Videogames Web Page!🏁</h1>
-                    <Link  to={"/home"}>
-                        <button className="boton">Click to home</button>
-                    </Link>
-            </div>
+      <div className="landing-container">
+        <div className="header">
+          <h1 className="title">Welcome!</h1>
+          <h1 className="title">to Videogames Web Page</h1>
         </div>
-    )
-}
+        <div className="button-container">
+          <Link to="/home">
+            <label></label>
+            <button className="custom-button">Click to Home</button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
 export default Landing;
