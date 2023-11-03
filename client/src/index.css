@@ -68,7 +68,9 @@ button:focus-visible {
   }
 } */
 html, body {
+  background-color: #333533;
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
 }

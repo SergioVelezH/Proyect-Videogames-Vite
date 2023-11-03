@@ -1,8 +1,8 @@
-import { CREATE_NEW_VIDEOGAME, FILTER_ORIGIN, FILTER_VIDEOGAME_GENRE, GET_ALL_GENRES, GET_ALL_VIDEOGAMES, GET_BY_NAME, GET_VIDEOGAME_BY_ID, ORDER_ALFA, ORDER_RATING } from "../actions";
+import { CREATE_NEW_VIDEOGAME, FILTER_ORIGIN, FILTER_VIDEOGAME_GENRE, GET_ALL_GENRES, GET_ALL_VIDEOGAMES, GET_BY_NAME, GET_VIDEOGAME_BY_ID, ORDER_ALFA, ORDER_RATING, PAGINATED } from "../actions";
 
 
 
-let initialState = {allVideogames:[],paginado: false,stateCopy:[], allGenres:[],videogameId:[], filteredVideogames: []};
+let initialState = {allVideogames:[],pagin: false,stateCopy:[], allGenres:[],videogameId:[], filteredVideogames: []};
 
 function rootReducer(state = initialState, action){
     switch(action.type){
@@ -10,13 +10,19 @@ function rootReducer(state = initialState, action){
             return{
                 ...state,
                 allVideogames:action.payload,
-                stateCopy:action.payload
+                stateCopy:action.payload,
             }
         case GET_BY_NAME:
             return{
                 ...state,
-                stateCopy:action.payload
-            }    
+                stateCopy:action.payload,
+            }
+        case PAGINATED:
+          return{
+            ...state,
+            pagin: action.payload
+          }    
+                
         case GET_VIDEOGAME_BY_ID:
             return{
                 ...state,
@@ -39,16 +45,19 @@ function rootReducer(state = initialState, action){
                     return {
                       ...state,
                       stateCopy: originalData.filter((game) => isNaN(Number(game.id))),
+                      pagin: true
                     };
                   case "Api":
                     return {
                       ...state,
                       stateCopy: originalData.filter((game) => !isNaN(Number(game.id))),
+                      pagin: true
                     };
                   case "All":
                     return {
                       ...state,
                       stateCopy: originalData,
+                      pagin: true
                     };
                   default:
                     return state;
@@ -111,7 +120,7 @@ function rootReducer(state = initialState, action){
             //             stateCopy: finalFilter
             //           }
             case FILTER_VIDEOGAME_GENRE:
-              const filterData = state.stateCopy.slice();
+              const filterData = state.allVideogames.slice();
 
               // Filtrar los juegos por género
               
@@ -132,6 +141,7 @@ function rootReducer(state = initialState, action){
               return {
                 ...state,
                 stateCopy: filteredGames,
+                pagin: true
               };
             
               

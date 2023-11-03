@@ -9,6 +9,7 @@ export const FILTER_ORIGIN = "FILTER_ORIGIN";
 export const ORDER_ALFA = "ORDER_ALFA";
 export const ORDER_RATING = "ORDER_RATING";
 export const FILTER_VIDEOGAME_GENRE = "FILTER_VIDEOGAME_GENRE";
+export const PAGINATED = "PAGINATED";
 
 
 export function getAllVideogames(){
@@ -46,6 +47,7 @@ export function getByName(name) {
       }
     };
   }
+
 
 
 
@@ -109,3 +111,10 @@ export function orderRating(order){
         payload: order,
     }
 };
+
+export function pag (){
+    return{
+        type: "PAGINATED",
+        payload: true
+    }
+}

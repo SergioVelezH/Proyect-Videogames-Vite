@@ -1,9 +1,10 @@
 .card {
-  width: 300px;
-  height: 400px;
+  width: 15rem;
+  height: 26rem;
   border: 1px solid #ffd100;
   border-radius: 5px;
-  margin: 10px;
+  margin-left: 2rem;
+  margin-right: 2rem;
   padding: 10px;
   box-shadow: 2px 2px 4px rgba(97, 97, 97, 0.873); /* Agrega una sombra mínima */
   background-color: #202020;

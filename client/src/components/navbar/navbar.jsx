@@ -7,7 +7,7 @@ import { filterOrigin, filterVideogameGenre, orderAlfa, orderRating } from "../.
 
 
 
-function Navbar({handleChange}) {
+function Navbar({handleChange, handleSubmit}) {
 
     const dispatch = useDispatch();
     const allGenres = useSelector((state) => state.allGenres);
@@ -28,12 +28,9 @@ function Navbar({handleChange}) {
 
     return (
         <div>
-            <form className='search-form'  >
-                <input className='search-input' placeholder='Search by name. . .' type='text' onChange={handleChange}/>
-                <Link to={"/create"}>
-                <button className='boton-create'>Create Videogame</button>
-                </Link>
-                <button className="boton-create" onClick={() => window.location.reload()}>🔄</button>
+            <form className='search-form' onChange={handleChange} >
+                <input className='search-input' placeholder='Search by name. . .' type='search' />
+                <button className="boton-create" type="submit" onClick={handleSubmit}></button>
                 <div>
                 <select  placeholder="Origin" onChange={handleFilterOrigin} >
                     <option value="Data Base">Data Base</option>
@@ -43,9 +40,9 @@ function Navbar({handleChange}) {
                 <select placeholder="Team" onChange={handleFilterGenre}>
                 {Array.isArray(allGenres) && allGenres.length > 0 ? 
              (allGenres.map((genre) => (<option key={genre.id}>{genre.name}</option>))
-                ) : (
-                      <option value="">Cargando</option>
-    )}
+             ) : (
+                 <option value="">Cargando</option>
+                 )}
                 </select>
                 <select  placeholder="Alpha" onChange={handleOrderAlfa} >
                     <option value="A-Z">A-Z</option>
@@ -55,6 +52,10 @@ function Navbar({handleChange}) {
                     <option value="Best">Best</option>
                     <option value="Worst">Worst</option>
                 </select>
+                <button className="boton-reload" onClick={() => window.location.reload()}>🔄</button>
+                <Link to={"/create"}>
+                <button className='boton-create'>Create Videogame</button>
+                </Link>
                 </div>
             </form>
         </div>

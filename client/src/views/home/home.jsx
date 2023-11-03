@@ -4,7 +4,7 @@ import { useDispatch,useSelector } from "react-redux";
 import './home.css'
 import Navbar from '../../components/navbar/navbar';
 import Cards from '../../components/cards/cards';
-import { getAllGenres, getAllVideogames, getByName } from '../../redux/actions';
+import { getAllGenres, getAllVideogames, getByName, pag } from '../../redux/actions';
 
 
 
@@ -20,15 +20,13 @@ function Home() {
     
       function handleSubmit(e){
         e.preventDefault();
-           
+        dispatch(getByName(searchString))
+        dispatch(pag())    
       }  
 
       console.log(allVideogames)
 
-    useEffect(() => {
-      dispatch(getByName(searchString));
-      },[searchString,dispatch])
-    
+
     useEffect(() => {
         dispatch(getAllVideogames())
       },[dispatch])

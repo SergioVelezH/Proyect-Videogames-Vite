@@ -9,7 +9,7 @@ function Card({game}) {
 
     const combinedGenres = Array.isArray(genres)
     ? genres.map((genre) => genre.name).join(', ')
-    : genres;
+    : genres.split(",").join(", ");
     return (
         <div className="card">
             <Link to={`/home/${id}`}>
