@@ -122,10 +122,17 @@ const makeRelationship = async (id, genreIds) => {
 
 
 
-const postNewVideogame = async (name,description,platforms,background_image,released,rating) => {
+const postNewVideogame = async (name, description, platforms, background_image, released, rating) => {
 
-    return await Videogame.create({name,description,platforms,background_image,released,rating});
-   
+  const existingGame = await Videogame.findOne({ where: { name } });
+
+  if (existingGame) {
+
+      throw new Error('Ya existe un videojuego con el mismo nombre');
+  }
+
+  
+  return await Videogame.create({ name, description, platforms, background_image, released, rating });
 };
 
 

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import './detail.css'
-import { getVideogameById } from '../../redux/actions';
+import { empty, getVideogameById } from '../../redux/actions';
 import Point from '../../components/point/point';
 
 
@@ -16,16 +16,28 @@ const videogame = useSelector((state) => state.videogameId);
 const { id } = useParams();
 
 useEffect(() => {
-    dispatch(getVideogameById(id))
-  },[id])
+    dispatch(getVideogameById(id));
+  
+    // Función de limpieza que se ejecutará cuando el componente se desmonte
+    return () => {
+      dispatch(empty());
+    };
+  }, [id]);
 
     return (
+        !videogame.length ? (<div className='home'><h1 className='loading'>CARGANDO...</h1></div>) : (
         <div>
             <Link to={"/home"}>
                 <button className="button-back">Home</button>
             </Link>
-            {videogame.map((game) => <Point game = {game}/> )}
+            
+            {Array.isArray(videogame) ? (
+        videogame.map((game) => <Point game={game} />)
+    ) : (
+        videogame
+    )}
         </div>
+        )
     )
 }
 

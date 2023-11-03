@@ -1,4 +1,4 @@
-import { CREATE_NEW_VIDEOGAME, FILTER_ORIGIN, FILTER_VIDEOGAME_GENRE, GET_ALL_GENRES, GET_ALL_VIDEOGAMES, GET_BY_NAME, GET_VIDEOGAME_BY_ID, ORDER_ALFA, ORDER_RATING, PAGINATED } from "../actions";
+import { CREATE_NEW_VIDEOGAME, EMPTY, FILTER_ORIGIN, FILTER_VIDEOGAME_GENRE, GET_ALL_GENRES, GET_ALL_VIDEOGAMES, GET_BY_NAME, GET_VIDEOGAME_BY_ID, ORDER_ALFA, ORDER_RATING, PAGINATED } from "../actions";
 
 
 
@@ -27,7 +27,12 @@ function rootReducer(state = initialState, action){
             return{
                 ...state,
                 videogameId:action.payload
-            }    
+            }
+        case EMPTY:
+          return{
+            ...state,
+            videogameId:action.payload
+        }        
         case CREATE_NEW_VIDEOGAME:
             return{
                 ...state,

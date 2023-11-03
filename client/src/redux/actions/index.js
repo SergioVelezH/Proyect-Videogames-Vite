@@ -10,6 +10,7 @@ export const ORDER_ALFA = "ORDER_ALFA";
 export const ORDER_RATING = "ORDER_RATING";
 export const FILTER_VIDEOGAME_GENRE = "FILTER_VIDEOGAME_GENRE";
 export const PAGINATED = "PAGINATED";
+export const EMPTY = "EMPTY"
 
 
 export function getAllVideogames(){
@@ -116,5 +117,13 @@ export function pag (){
     return{
         type: "PAGINATED",
         payload: true
+    }
+}
+
+
+export function empty (){
+    return{
+        type: "EMPTY",
+        payload: [],
     }
 }
