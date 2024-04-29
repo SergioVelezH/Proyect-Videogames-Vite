@@ -15,7 +15,7 @@ const getAllVideogames = async () => {
       
      
     const apiUrl = 'https://api.rawg.io/api/games';
-    const numGamesToFetch = 30; 
+    const numGamesToFetch = 100; 
     const numGamesPerRequest = 10;
     const numRequests = Math.ceil(numGamesToFetch / numGamesPerRequest);
   
