@@ -24,6 +24,10 @@
     color: #ffee32;
   }
   
+  .title{
+    color: #ffee32;
+  }
+  
   .custom-button {
     color: rgb(223, 215, 215,0.01);
     border: none;
@@ -39,7 +43,7 @@
     color: #ffee32;
   }
   
-  .button-container {
+  .button-landing {
     margin-top: 20px;
     text-align: center;
   }

@@ -24,7 +24,7 @@ function Home() {
         dispatch(pag())    
       }  
 
-      console.log(allVideogames)
+
 
 
     useEffect(() => {
@@ -35,11 +35,11 @@ function Home() {
         dispatch(getAllGenres())
       },[dispatch])  
 
-    console.log(allVideogames)
+  
       
     
     return (
-        !allVideogames.length ? (<div className='home'><h1 className='loading'>CARGANDO...</h1></div>) : (
+        !allVideogames.length ? (<div className='home'><h1 className='loading'>LOADING...</h1></div>) : (
         <div className='home'>
             <Navbar handleChange={handleChange} handleSubmit={handleSubmit}/>
             <Cards allVideogames = {allVideogames}/>

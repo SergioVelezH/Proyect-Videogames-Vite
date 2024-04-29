@@ -15,7 +15,7 @@ const getAllVideogames = async () => {
       
      
     const apiUrl = 'https://api.rawg.io/api/games';
-    const numGamesToFetch = 100; 
+    const numGamesToFetch = 30; 
     const numGamesPerRequest = 10;
     const numRequests = Math.ceil(numGamesToFetch / numGamesPerRequest);
   
@@ -39,7 +39,7 @@ const getAllVideogames = async () => {
   
       return [...videogamesDb, ...allGames.slice(0, 100)];
      } catch (error) {
-        throw Error ("Ups hubo un problema en el servidor")
+        throw Error ("Ops there was a problem on the server")
       }
     
   };
@@ -69,7 +69,7 @@ const getVideogameByName = async (name) => {
         },
       });
     if(filteredVideogames.length === 0 && filteredDb.length === 0){
-        throw Error ("No hay ningún videogame con este nombre");
+        throw Error ("There is no video game with this name");
     }
 
 
@@ -98,17 +98,13 @@ const getVideogameById = async(id,source) => {
       return videogame;         
 };
 
-// const makeRelationship = async (id, genreId) => {
-//     const videogame = await Videogame.findByPk(id);
-//     const genre = await Genre.findByPk(genreId);
-//     return videogame.addGenre(genre);
-// };
+
 const makeRelationship = async (id, genreIds) => {
   const videogame = await Videogame.findByPk(id);
 
   
   if (!Array.isArray(genreIds)) {
-    throw new Error('genreIds debe ser un arreglo de IDs.');
+    throw new Error('genreIds must be an array of IDs.');
   }
 
   
@@ -128,7 +124,7 @@ const postNewVideogame = async (name, description, platforms, background_image, 
 
   if (existingGame) {
 
-      throw new Error('Ya existe un videojuego con el mismo nombre');
+      throw new Error('There is already a video game with the same name');
   }
 
   

@@ -30,7 +30,7 @@ function Navbar({handleChange, handleSubmit}) {
         <div>
             <form className='search-form' onChange={handleChange} >
                 <input className='search-input' placeholder='Search by name. . .' type='search' />
-                <button className="boton-create" type="submit" onClick={handleSubmit}></button>
+                <button className="boton-create" type="submit" onClick={handleSubmit}>🔍</button>
                 <div>
                 <select  placeholder="Origin" onChange={handleFilterOrigin} >
                     <option value="Data Base">Data Base</option>
@@ -41,7 +41,7 @@ function Navbar({handleChange, handleSubmit}) {
                 {Array.isArray(allGenres) && allGenres.length > 0 ? 
              (allGenres.map((genre) => (<option key={genre.id}>{genre.name}</option>))
              ) : (
-                 <option value="">Cargando</option>
+                 <option value="">Loading...</option>
                  )}
                 </select>
                 <select  placeholder="Alpha" onChange={handleOrderAlfa} >
@@ -67,17 +67,3 @@ export default Navbar;
 
 
 
-{/* <label htmlFor="dataBaseCheckbox">Data Base</label>
-<input type="checkbox" id="dataBaseCheckbox" name="Data Base" value="Data Base" onChange={handleFilterOrigin} />
-<label htmlFor="apiCheckbox">Api</label>
-<input type="checkbox" id="apiCheckbox" name="Api" value="Api" onChange={handleFilterOrigin} /> */}
-{/* <label htmlFor="aToZCheckbox">A-Z</label>
-<input type="checkbox" id="aToZCheckbox" name="A-Z" value="A-Z" onChange={handleOrderAlfa} />
-<label htmlFor="zToACheckbox">Z-A</label>
-<input type="checkbox" id="zToACheckbox" name="Z-A" value="Z-A" onChange={handleOrderAlfa} /> */}
-{/* <label htmlFor="bestCheckbox">Best</label>
-<input type="checkbox" id="bestCheckbox" name="Best" value="Best" onChange={handleOrderRating} />
-<label htmlFor="worstCheckbox">Worst</label>
-<input type="checkbox" id="worstCheckbox" name="Worst" value="Worst" onChange={handleOrderRating} />
-<label htmlFor="dataBaseCheckbox">RESET</label> */}
-{/* <button name="All" value="All" onChange={handleFilterOrigin} /> */}

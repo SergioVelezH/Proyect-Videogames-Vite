@@ -1,0 +1,12 @@
+.button-container{
+    background-color: #ffee32;
+    font-weight: bolder;
+    width: 7rem;
+    height: 2.75rem; 
+    color: rgb(78, 77, 77);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-align: center;
+}

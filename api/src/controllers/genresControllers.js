@@ -11,26 +11,6 @@ const genreSet = new Set();
 module.exports = getGenres = async () => {
 
 
-    // const info = (await axios.get(`https://api.rawg.io/api/games?key=${APY_KEY}`)).data
-    
-    // const response = info.results;
-
-    // for (const game of response) {
-    //   const genres = game.genres;
-      
-    //     for (const genre of genres) {
-    //       const genreName = genre.name;
-          
-    //       if (!genreSet.has(genreName)) {
-    //         await Genre.create({ name: genreName });
-    //         genreSet.add(genreName);
-    //       }
-    //     }
-    //   }
-      
-    //   const arr = await Genre.findAll();
-      
-    //   return arr;
 
     const numGamesToFetch = 100;
   

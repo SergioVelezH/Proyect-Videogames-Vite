@@ -1,0 +1,78 @@
+
+.form-form {
+    background-color: #222; 
+    padding: 20px;
+    border: 1px solid #ffd100;
+    border-radius: 5px;
+    width: 600px;
+    box-shadow: 2px 2px 4px rgba(97, 97, 97, 0.873);    
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    margin-left: 41rem;
+}
+
+  
+  
+  .all-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+ 
+  .only-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  
+  .only-input {
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+ 
+  .only-span {
+    color: red;
+    font-size: 20px;
+    margin-top: 5px;
+  }
+  
+ 
+  .boton-form {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  
+  .good-span {
+    color: green;
+    font-size: 20px;
+    margin: 10px;
+
+  }
+
+  
+input[type="checkbox"] {
+    margin-right: 10px; 
+    margin-bottom: 5px; 
+    vertical-align: middle;
+  }
+
+ 
+.checkbox-container {
+    display: flex;
+    flex-direction: column; 
+    margin-top: 10px; 
+  }
+

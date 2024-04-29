@@ -18,24 +18,29 @@ const { id } = useParams();
 useEffect(() => {
     dispatch(getVideogameById(id));
   
-    // Función de limpieza que se ejecutará cuando el componente se desmonte
+    
     return () => {
       dispatch(empty());
     };
   }, [id]);
 
     return (
-        !videogame.length ? (<div className='home'><h1 className='loading'>CARGANDO...</h1></div>) : (
-        <div>
+        !videogame.length ? (<div className='home'><h1 className='loading'>LOADING...</h1></div>) : (
+            <div>
+                <div >
             <Link to={"/home"}>
-                <button className="button-back">Home</button>
+                <button className="button-container" >Home</button>
             </Link>
+            </div>
+        <div>
             
+        
             {Array.isArray(videogame) ? (
         videogame.map((game) => <Point game={game} />)
     ) : (
         videogame
     )}
+        </div>
         </div>
         )
     )

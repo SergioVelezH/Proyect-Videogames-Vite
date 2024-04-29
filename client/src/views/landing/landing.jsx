@@ -7,9 +7,9 @@ function Landing() {
     return (
       <div className="landing-container">
         <div className="header">
-          <h1 className="title">Welcome to Videogames!</h1>
+          <h1 className="title">Welcome to Videogames</h1>
         </div>
-        <div className="button-container">
+        <div className="button-landing">
           <Link to="/home">
             <label></label>
             <button className="custom-button">Click to Home</button>

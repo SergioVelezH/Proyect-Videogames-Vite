@@ -9,7 +9,7 @@ function Create() {
     return (
         <div>
             <Link to={"/home"}>
-                <button className="button-back">Home</button>
+                <button className="button-container">Home</button>
             </Link>
             <h1 className='title'>CREATE    YOUR     VIDEOGAME!</h1>
             <Form/>

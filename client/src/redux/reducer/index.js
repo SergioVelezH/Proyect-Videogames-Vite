@@ -2,7 +2,7 @@ import { CREATE_NEW_VIDEOGAME, EMPTY, FILTER_ORIGIN, FILTER_VIDEOGAME_GENRE, GET
 
 
 
-let initialState = {allVideogames:[],pagin: false,stateCopy:[], allGenres:[],videogameId:[], filteredVideogames: []};
+let initialState = {allVideogames:[],pagin:false,stateCopy:[], allGenres:[],videogameId:[], filteredVideogames: []};
 
 function rootReducer(state = initialState, action){
     switch(action.type){
@@ -36,7 +36,7 @@ function rootReducer(state = initialState, action){
         case CREATE_NEW_VIDEOGAME:
             return{
                 ...state,
-                allVideogames:action.payload
+                stateCopy:action.payload
             }    
         case GET_ALL_GENRES:
             return{
@@ -49,20 +49,20 @@ function rootReducer(state = initialState, action){
                   case "Data Base":
                     return {
                       ...state,
-                      stateCopy: originalData.filter((game) => isNaN(Number(game.id))),
+                      stateCopy: originalData.filter((game) => isNaN((game.id))),
                       pagin: true
                     };
                   case "Api":
                     return {
                       ...state,
-                      stateCopy: originalData.filter((game) => !isNaN(Number(game.id))),
+                      stateCopy: originalData.filter((game) => !isNaN((game.id))),
                       pagin: true
                     };
                   case "All":
                     return {
                       ...state,
                       stateCopy: originalData,
-                      pagin: true
+                      pagin: false,
                     };
                   default:
                     return state;
@@ -83,7 +83,7 @@ function rootReducer(state = initialState, action){
                   }
                     return {
                       ...state,
-                      stateCopy: sortedData, // Actualiza allVideogames con el resultado del ordenamiento alfabético
+                      stateCopy: sortedData, 
                     };
                             
                             
@@ -99,60 +99,36 @@ function rootReducer(state = initialState, action){
                     ratedData.sort(ratingSort);
                       return {
                         ...state,
-                        stateCopy: ratedData, // Actualiza allVideogames con el resultado del ordenamiento por rating
+                        stateCopy: ratedData, 
                       };    
-            // case FILTER_VIDEOGAME_GENRE:
-              
-            //   const filterGenre = (array) =>{
-            //     array.map((game) => {
-            //     if(game.genres){
-            //       return{
-            //         ...game,
-            //         genres: Array.isArray(game.genres)
-            //         ? game.genres.map((genre) => genre.name).join(',')
-            //         : game.genres.split(",").join(",")
-            //       }
-            //     }
-            //     return game.filter((game) => game.genres && game.genres.includes(action.payload));
-            //   })};
-
-            //   let filterData = state.stateCopy.slice()
-            //   let finalFilter = filterGenre(filterData);
-              
-              
-            //           return {
-            //             ...state,
-            //             stateCopy: finalFilter
-            //           }
+           
             case FILTER_VIDEOGAME_GENRE:
-              const filterData = state.allVideogames.slice();
+              
+  const originalStateCopy = state.originalStateCopy || state.stateCopy.slice();
+  console.log(state.stateCopy)
+  
+  const gamesWithMappedGenres = originalStateCopy.map((game) => {
+    if (game.genres) {
+      return {
+        ...game,
+        genres: Array.isArray(game.genres)
+          ? game.genres.map((genre) => genre.name).join(',')
+          : game.genres.split(",").join(",")
+      };
+    }
+    return game;
+  });
 
-              // Filtrar los juegos por género
-              
-              // Mapear los nombres de género en los juegos
-              const gamesWithMappedGenres = filterData.map((game) => {
-                if (game.genres) {
-                  return {
-                    ...game,
-                    genres: Array.isArray(game.genres)
-                    ? game.genres.map((genre) => genre.name).join(',')
-                    : game.genres.split(",").join(",")
-                  };
-                }
-                return game;
-              });
-              const filteredGames = gamesWithMappedGenres.filter((game) => game.genres && game.genres.includes(action.payload));
-              
-              return {
-                ...state,
-                stateCopy: filteredGames,
-                pagin: true
-              };
-            
-              
-              
+  const filteredGames = gamesWithMappedGenres.filter((game) =>
+    game.genres && game.genres.includes(action.payload)
+  );
 
-
+  return {
+    ...state,
+    stateCopy: filteredGames,
+    pagin: true,
+    originalStateCopy: originalStateCopy, 
+  };
 
             default:
               return state;
@@ -169,121 +145,4 @@ function rootReducer(state = initialState, action){
         
         
         
-        
-        // case FILTER_ORIGIN:
-        //     switch(action.payload){
-        //         case "Data Base":
-        //             return{
-        //                 ...state,
-        //                 stateCopy:state.allVideogames,
-        //                 allVideogames:state.stateCopy.filter((game) => isNaN(Number(game.id)))
-        //             }
-        //         case "Api":
-        //             return{
-        //                 ...state,
-        //                 stateCopy:state.allVideogames,
-        //                 allVideogames:state.stateCopy.filter((game) => !isNaN(Number(game.id)))
-        //             }
-        //         case "All":
-        //             return{
-        //                 allVideogames
-        //             }
-        //         default:
-        //             return state;    
-        //         }
-        // case ORDER_ALFA:
-        //         switch(action.payload){            
-        //         case "A-Z":
-        //             return{
-        //                 ...state,
-        //                 stateCopy:state.allVideogames,
-        //                 allVideogames: state.stateCopy.sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))
-        //             }
-        //         case "Z-A":
-        //             return{
-        //                 ...state,
-        //                 stateCopy:state.allVideogames,
-        //                 allVideogames: state.stateCopy.sort((a, b) => b.name.localeCompare(a.name, 'es', { sensitivity: 'base' }))
-        //             }
-        //         default:
-        //             return state;
-        //         }
-        // case ORDER_RATING:
-        //         switch(action.payload){        
-        //         case "Best":
-        //             return{
-        //                 ...state,
-        //                 stateCopy:state.allVideogames,
-        //                 allVideogames: state.stateCopy.sort((a, b) => b.rating - a.rating)
-        //             }
-        //         case "Worst":
-        //             return{
-        //                 ...state,
-        //                 stateCopy:state.allVideogames,
-        //                 allVideogames: state.stateCopy.sort((a, b) => a.rating - b.rating)
-        //             }
-        //         default:
-        //             return state;                        
-        //         }            
       
-      
-      
-      
-      
-      
-      
-        // case FILTER_ORIGIN:
-        //     switch(action.payload){
-        //         case "Data Base":
-        //             return{
-        //                 ...state,
-        //                 stateCopy:state.allVideogames,
-        //                 allVideogames:state.stateCopy.filter((game) => isNaN(Number(game.id)))
-        //             }
-        //         case "Api":
-        //             return{
-        //                 ...state,
-        //                 stateCopy:state.allVideogames,
-        //                 allVideogames:state.stateCopy.filter((game) => !isNaN(Number(game.id)))
-        //             }
-        //         case "All":
-        //             return{
-        //                 allVideogames
-        //             }
-        //         default:
-        //             return state;    
-        //         }
-        //     case ORDER_ALFA:
-        //         switch(action.payload){            
-        //         case "A-Z":
-        //             return{
-        //                 ...state,
-        //                 stateCopy:state.allVideogames,
-        //                 allVideogames: state.stateCopy.sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))
-        //             }
-        //         case "Z-A":
-        //             return{
-        //                 ...state,
-        //                 stateCopy:state.allVideogames,
-        //                 allVideogames: state.stateCopy.sort((a, b) => b.name.localeCompare(a.name, 'es', { sensitivity: 'base' }))
-        //             }
-        //         default:
-        //             return state;
-        //         }
-        //     case ORDER_RATING:
-        //         switch(action.payload){        
-        //         case "Best":
-        //             return{
-        //                 ...state,
-        //                 stateCopy:state.allVideogames,
-        //                 allVideogames: state.stateCopy.sort((a, b) => b.rating - a.rating)
-        //             }
-        //         case "Worst":
-        //             return{
-        //                 ...state,
-        //                 stateCopy:state.allVideogames,
-        //                 allVideogames: state.stateCopy.sort((a, b) => a.rating - b.rating)
-        //             }
-        //         default:
-        //             return state;                        
-        //         }
